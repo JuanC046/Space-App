@@ -1,7 +1,8 @@
 import { styled } from "styled-components"
 import Titulo from "../../Titulo"
+import { useEffect, useState } from "react";
 
-import fotos from './fotos-populares.json'
+// import fotos from './fotos-populares.json'
 
 const ColumnaFotos = styled.section`
     display: flex;
@@ -28,6 +29,15 @@ const Boton = styled.button`
 `;
 
 const Populares = () => {
+    const [fotos, setFotos] = useState([])
+    useEffect(() => {
+        const getFotos = async () => {
+            const response = await fetch(`${import.meta.env.VITE_API}/populares`)
+            const data = await response.json()
+            setFotos([...data])
+        }
+        getFotos()
+    }, [])
     return (
         <section>
             <Titulo $align='center'>Populares</Titulo>
