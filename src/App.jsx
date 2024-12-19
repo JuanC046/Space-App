@@ -5,7 +5,7 @@ import BarraLateral from "./components/BarraLateral";
 import Banner from "./components/Banner";
 import banner from "./assets/banner.png";
 import Galeria from "./components/Galeria";
-// import fotos from "./fotos.json"
+
 import ModalZoom from "./components/ModalZoom";
 import Pie from "./components/Pie";
 import GlobalContextProvider from "./context/GlobalContext";

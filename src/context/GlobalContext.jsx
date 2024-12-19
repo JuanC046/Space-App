@@ -1,5 +1,6 @@
 import { createContext, useEffect, useReducer } from "react";
 import PropTypes from "prop-types";
+import fotos from "../fotos";
 
 export const GlobalContext = createContext({});
 
@@ -26,7 +27,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 fotoSeleccionada: action.payload,
-                abiertoFotoModal: action.payload !== null? true : false,
+                abiertoFotoModal: action.payload !== null ? true : false,
             };
         case "ALTERNAR_FAVORITO": {
             const fotosDeGaleria = state.fotosDeGaleria.map((fotoDeGaleria) => {
@@ -88,10 +89,16 @@ const GlobalContextProvider = ({ children }) => {
 
     useEffect(() => {
         const getFotos = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API}/fotos`);
-            const data = await response.json();
-            // setFotosDeGaleria([...data]);
-            dispatch({ type: "SET_FOTOS_DE_GALERIA", payload: data });
+            let fotosGaleria = [];
+            try {
+                const response = await fetch(
+                    `${import.meta.env.VITE_API}/fotos`
+                );
+                fotosGaleria = await response.json();
+            } catch {
+                fotosGaleria = fotos;
+            }
+            dispatch({ type: "SET_FOTOS_DE_GALERIA", payload: fotosGaleria });
         };
         getFotos();
     }, []);
