@@ -7,6 +7,7 @@ const initialState = {
     consulta: "",
     fotosDeGaleria: [],
     fotoSeleccionada: null,
+    abiertoFotoModal: false,
 };
 
 const reducer = (state, action) => {
@@ -25,6 +26,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 fotoSeleccionada: action.payload,
+                abiertoFotoModal: action.payload !== null? true : false,
             };
         case "ALTERNAR_FAVORITO": {
             const fotosDeGaleria = state.fotosDeGaleria.map((fotoDeGaleria) => {
