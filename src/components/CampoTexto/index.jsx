@@ -36,7 +36,7 @@ const IconoLupa = styled.img`
 
 const CampoTexto = () => {
     const CampoBusqueda = useRef(null);
-    const { setConsulta } = useContext(GlobalContext)
+    const { dispatch } = useContext(GlobalContext)
     return (
         <ContainerEstilizado>
             <CampoTextoEstilizado
@@ -45,7 +45,7 @@ const CampoTexto = () => {
                 placeholder="¿Qué estás buscando?"
             />
             <IconoLupa src={search} alt="ícono de lupa" 
-            onClick={() => setConsulta(CampoBusqueda.current.value)}
+            onClick={() => dispatch({ type: "SET_CONSULTA", payload: CampoBusqueda.current.value })}
             />
         </ContainerEstilizado>
     );

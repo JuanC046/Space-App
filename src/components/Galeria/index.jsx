@@ -23,8 +23,10 @@ const ImagenesContainer = styled.section`
 `;
 
 const Galeria = () => {
-    const { fotosDeGaleria, consulta, setFotoSeleccionada, alAlternarFavorito } =
-        useContext(GlobalContext);
+    // const { fotosDeGaleria, consulta, setFotoSeleccionada, alAlternarFavorito } =
+    //     useContext(GlobalContext);
+    const { state } = useContext(GlobalContext);
+    const { fotosDeGaleria, consulta } = state;
     const normalizeString = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
@@ -59,8 +61,8 @@ const Galeria = () => {
                             )
                             .map((foto) => (
                                 <Imagen
-                                    alAlternarFavorito={alAlternarFavorito}
-                                    alSolicitarZoom={foto => setFotoSeleccionada(foto)}
+                                    // alAlternarFavorito={alAlternarFavorito}
+                                    // alSolicitarZoom={foto => setFotoSeleccionada(foto)}
                                     key={foto.id}
                                     foto={foto}
                                 />
